@@ -10,7 +10,7 @@ Students are expected to:
 Student Info
 =======================
 
-* Name: *YourNameHere*
-* ID: *YourIdHere*
-* Group ID: *Your Group ID here*
+* Name: Dinh Nhu Minh Phuong
+* ID: USTHBI8-141
+* Group ID: 1
 
