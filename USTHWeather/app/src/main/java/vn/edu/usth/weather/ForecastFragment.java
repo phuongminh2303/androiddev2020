@@ -30,28 +30,28 @@ public class ForecastFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         /* OLD METHOD: copy and paste LinearLayout multiple times in fragment_forecast.xml */
-//        return inflater.inflate(R.layout.fragment_forecast, container, false);
+        return inflater.inflate(R.layout.fragment_forecast, container, false);
 
         /* FANCY METHOD: use a loop and 2 files: fragment_forecast2_xml and weather_row.xml*/
-        ScrollView view = (ScrollView) inflater.inflate(R.layout.fragment_forecast2, container, false);
-        LinearLayout weatherContainer = view.findViewById(R.id.weather_container);
-
-        for(int i = 0; i < 14; i++){
-            // setup weather row layout
-            LinearLayout row = (LinearLayout) inflater.inflate(R.layout.weather_row, null);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(30, 0, 0, 10);
-
-            // randomly set information to weather row
-            ((TextView) row.findViewById(R.id.day_row_date)).setText(dayName[i%7]);
-            int index = rand.nextInt((iconArray.length- 1) - 0 + 1) + 0;
-            ((ImageView) row.findViewById(R.id.day_row_icon)).setImageResource(iconArray[index]);
-            ((TextView) row.findViewById(R.id.day_row_status)).setText(weatherStatus[index]);
-            int temperature = rand.nextInt((30-20) +1 ) + 20;
-            ((TextView) row.findViewById(R.id.day_row_temp)).setText(temperature +"C-" + (temperature+3) + "C");
-            weatherContainer.addView(row, layoutParams);
-        }
-        return view;
+//        ScrollView view = (ScrollView) inflater.inflate(R.layout.fragment_forecast2, container, false);
+//        LinearLayout weatherContainer = view.findViewById(R.id.weather_container);
+//
+//        for(int i = 0; i < 14; i++){
+//            // setup weather row layout
+//            LinearLayout row = (LinearLayout) inflater.inflate(R.layout.weather_row, null);
+//            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+//                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//            layoutParams.setMargins(30, 0, 0, 10);
+//
+//            // randomly set information to weather row
+//            ((TextView) row.findViewById(R.id.day_row_date)).setText(dayName[i%7]);
+//            int index = rand.nextInt((iconArray.length- 1) - 0 + 1) + 0;
+//            ((ImageView) row.findViewById(R.id.day_row_icon)).setImageResource(iconArray[index]);
+//            ((TextView) row.findViewById(R.id.day_row_status)).setText(weatherStatus[index]);
+//            int temperature = rand.nextInt((30-20) +1 ) + 20;
+//            ((TextView) row.findViewById(R.id.day_row_temp)).setText(temperature +"C-" + (temperature+3) + "C");
+//            weatherContainer.addView(row, layoutParams);
+//        }
+//        return view;
     }
 }
