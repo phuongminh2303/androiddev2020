@@ -153,12 +153,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Cloudy"/>
+                        android:text="Sunny"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
-                        android:text="18C-22C"/>
+                        android:text="21C-26C"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout

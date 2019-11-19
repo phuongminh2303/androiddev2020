@@ -57,8 +57,7 @@ public class WeatherAndForecastFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_weather_and_forecast, container, false);
         RelativeLayout weather_container = (RelativeLayout) view.findViewById(R.id.weather_container);
-//        I will fix this fucking shit later!!!
-//        ((TextView) weather_container.findViewById(R.id.tab_layout)).setText("Hanoi");
+        ((TextView) weather_container.findViewById(R.id.tab_location)).setText(title);
         return view;
     }
 
