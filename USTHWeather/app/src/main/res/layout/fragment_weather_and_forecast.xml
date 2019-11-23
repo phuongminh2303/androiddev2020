@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".WeatherFragment"
-        android:background="#B9EEB9"
+        android:background="@color/colorWeather"
         android:padding="15dp"
         android:id="@+id/weather_container">
         <TextView
@@ -49,7 +49,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    android:text="Monday"/>
+                    android:text="@string/monday"/>
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="58dp"
@@ -63,7 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Sunny"/>
+                        android:text="@string/sunny"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -79,7 +79,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    android:text="Tuesday"/>
+                    android:text="@string/tuesday"/>
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="58dp"
@@ -93,7 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Windy"/>
+                        android:text="@string/windy"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -109,7 +109,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    android:text="Wednesday"/>
+                    android:text="@string/wednesday"/>
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="58dp"
@@ -123,7 +123,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Partly cloudy"/>
+                        android:text="@string/party_cloudy"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -139,7 +139,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    android:text="Thursday"/>
+                    android:text="@string/thursday"/>
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="58dp"
@@ -153,7 +153,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Sunny"/>
+                        android:text="@string/sunny"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -169,7 +169,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    android:text="Friday"/>
+                    android:text="@string/friday"/>
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="58dp"
@@ -183,7 +183,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Thunderstorm"/>
+                        android:text="@string/thunderstorm"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -199,7 +199,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    android:text="Saturday"/>
+                    android:text="@string/saturday"/>
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="58dp"
@@ -213,7 +213,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Windy"/>
+                        android:text="@string/windy"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -229,7 +229,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    android:text="Sunday"/>
+                    android:text="@string/sunday"/>
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="58dp"
@@ -243,7 +243,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Windy"/>
+                        android:text="@string/windy"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -259,7 +259,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    android:text="Monday"/>
+                    android:text="@string/monday"/>
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="58dp"
@@ -273,7 +273,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Sunny"/>
+                        android:text="@string/sunny"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -289,7 +289,7 @@
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    android:text="Tuesday"/>
+                    android:text="@string/tuesday"/>
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="58dp"
@@ -303,7 +303,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="Partly cloudy"/>
+                        android:text="@string/party_cloudy"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"

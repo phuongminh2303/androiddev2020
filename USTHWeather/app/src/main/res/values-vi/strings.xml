@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">USTHWeather</string>
+
+    <!-- Weather Container   -->
+    <string name="weather_icon">Weather Icon</string>
+    <string name="current_weather">"12C\nTrời nhiều mây"</string>
+    <string name="current_location">Paris</string>
+
+    <!-- Days of week -->
+    <string name="monday">Thứ hai</string>
+    <string name="tuesday">Thứ ba</string>
+    <string name="wednesday">Thứ tư</string>
+    <string name="thursday">Thứ năm</string>
+    <string name="friday">Thứ sáu</string>
+    <string name="saturday">Thứ bảy</string>
+    <string name="sunday">Chủ nhật</string>
+
+    <!-- Weather   -->
+    <string name="sunny">Trời nắng</string>
+    <string name="windy">Trời có gió</string>
+    <string name="party_cloudy">Trời nhiều mây</string>
+    <string name="thunderstorm">Trời mưa</string>
+
+
+
+</resources>
