@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
@@ -27,6 +30,14 @@ import java.io.InputStream;
 public class WeatherActivity extends AppCompatActivity {
     MediaPlayer music;
     Toolbar my_toolbar;
+    final Handler handler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            // This method is executed in main thread
+            String content = msg.getData().getString("server_response");
+            Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,38 +66,52 @@ public class WeatherActivity extends AppCompatActivity {
         music = MediaPlayer.create(WeatherActivity.this, R.raw.skygarden);
         music.start();
 
+    }
 
-        // labwork 13
-        final Handler handler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                // This method is executed in main thread
-                String content = msg.getData().getString("server_response");
-                Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
-            }
-        };
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // this method is run in a worker thread
-                try {
-                    // wait for 10 seconds to simulate a long network access
-                    Thread.sleep(10000);
-                }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                // Assume that we got our data from server
-                Bundle bundle = new Bundle();
-                bundle.putString("server_response", "some sample json here");
-                // notify main thread
-                Message msg = new Message();
-                msg.setData(bundle);
-                handler.sendMessage(msg);
-            }
-        });
+    // labwork 14:
+    private class AsyncTaskRunner extends AsyncTask<String, String, String> {
+        private String resp;
+        ProgressDialog progressDialog;
 
-        t.start();
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                Thread.sleep(5000);
+                resp = "Sleep for 5 seconds";
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            } catch (Exception e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            }
+            return resp;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // execution of result of Long time consuming operation
+            progressDialog.dismiss();
+            // Assume that we got our data from server
+            Bundle bundle = new Bundle();
+            bundle.putString("server_response", "some sample json here");
+            // notify main thread
+            Message msg = new Message();
+            msg.setData(bundle);
+            handler.sendMessage(msg);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(WeatherActivity.this,
+                    "Updating weather...",
+                    "Wait for 5 seconds!");
+        }
+
+        @Override
+        protected void onProgressUpdate(String... text) {
+            // Do something here
+        }
     }
 
     // labwork 12
@@ -100,7 +125,10 @@ public class WeatherActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.refresh: Toast.makeText(getApplicationContext(), "Refresh successfully!", Toast.LENGTH_LONG).show();
+            case R.id.refresh:
+//                Toast.makeText(getApplicationContext(), "Refresh", Toast.LENGTH_LONG).show();
+                AsyncTaskRunner runner = new AsyncTaskRunner();
+                runner.execute("5000");
                 return true;
             case R.id.settings:
                 Intent intent = new Intent(this, PrefActivity.class);
