@@ -1,29 +1,29 @@
 package vn.edu.usth.weather;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 public class WeatherActivity extends AppCompatActivity {
     MediaPlayer music;
+    Toolbar my_toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +51,30 @@ public class WeatherActivity extends AppCompatActivity {
         // Play music in the app
         music = MediaPlayer.create(WeatherActivity.this, R.raw.skygarden);
         music.start();
-
     }
 
+    // labwork 12
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.refresh: Toast.makeText(getApplicationContext(), "Refresh successfully!", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.settings:
+                Intent intent = new Intent(this, PrefActivity.class);
+                startActivity(intent);
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
+
+    // labwork 11
     private void copyFileToExternalStorage(int resourceId, String resourceName){
         String pathSDCard = Environment.getExternalStorageDirectory()
                 + "/Android/data/vn.edu.usth.weather/" + resourceName;
