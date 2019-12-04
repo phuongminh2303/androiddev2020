@@ -6,6 +6,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -26,6 +29,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class WeatherActivity extends AppCompatActivity {
     MediaPlayer music;
@@ -66,40 +72,11 @@ public class WeatherActivity extends AppCompatActivity {
         music = MediaPlayer.create(WeatherActivity.this, R.raw.skygarden);
         music.start();
 
+        // labwork 15: fetch image from server
+        new GetRequestImage().execute("https://ictlab.usth.edu.vn/wp-content/uploads/logos/usth.png");
     }
-
-    // labwork 14:
-    private class AsyncTaskRunner extends AsyncTask<String, String, String> {
-        private String resp;
-        ProgressDialog progressDialog;
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                Thread.sleep(5000);
-                resp = "Sleep for 5 seconds";
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                resp = e.getMessage();
-            } catch (Exception e) {
-                e.printStackTrace();
-                resp = e.getMessage();
-            }
-            return resp;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            // execution of result of Long time consuming operation
-            progressDialog.dismiss();
-            // Assume that we got our data from server
-            Bundle bundle = new Bundle();
-            bundle.putString("server_response", "some sample json here");
-            // notify main thread
-            Message msg = new Message();
-            msg.setData(bundle);
-            handler.sendMessage(msg);
-        }
+    private class GetRequestImage extends AsyncTask<String, Void, Bitmap> {
+        private ProgressDialog progressDialog;
 
         @Override
         protected void onPreExecute() {
@@ -109,8 +86,34 @@ public class WeatherActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onProgressUpdate(String... text) {
-            // Do something here
+        protected Bitmap doInBackground(String... params) {
+            try{
+                URL url = new URL(params[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+                InputStream inputStream = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(inputStream);
+                return myBitmap;
+            } catch (MalformedURLException e){
+                e.printStackTrace();
+            } catch (Exception e) {
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            progressDialog.dismiss();
+            ImageView imageView = (ImageView) findViewById(R.id.logo);
+            imageView.setImageBitmap(bitmap);
         }
     }
 
@@ -126,9 +129,9 @@ public class WeatherActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.refresh:
-//                Toast.makeText(getApplicationContext(), "Refresh", Toast.LENGTH_LONG).show();
-                AsyncTaskRunner runner = new AsyncTaskRunner();
-                runner.execute("5000");
+                Toast.makeText(getApplicationContext(), "Refresh", Toast.LENGTH_LONG).show();
+//                AsyncTaskRunner   runner = new AsyncTaskRunner();
+//                runner.execute("5000");
                 return true;
             case R.id.settings:
                 Intent intent = new Intent(this, PrefActivity.class);
