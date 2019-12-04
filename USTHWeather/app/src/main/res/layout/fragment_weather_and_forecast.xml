@@ -30,18 +30,7 @@
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="25dp"
-            android:layout_gravity="top"
-            android:id="@+id/logo"
-            android:alpha="0.7"/>
-        <ScrollView
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
@@ -325,9 +314,4 @@
             </LinearLayout>
 
         </ScrollView>
-    </FrameLayout>
-
-
-
-
 </LinearLayout>
