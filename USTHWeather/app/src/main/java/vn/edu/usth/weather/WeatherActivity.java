@@ -22,6 +22,10 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -73,7 +77,25 @@ public class WeatherActivity extends AppCompatActivity {
         music.start();
 
         // labwork 15: fetch image from server
-        new GetRequestImage().execute("https://ictlab.usth.edu.vn/wp-content/uploads/logos/usth.png");
+//        new GetRequestImage().execute("https://ictlab.usth.edu.vn/wp-content/uploads/logos/usth.png");
+
+        // labwork 16: use Volley
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(getImageRequest());
+    }
+
+    public ImageRequest getImageRequest() {
+        Response.Listener<Bitmap> listener = new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap response) {
+                ImageView iv = (ImageView) findViewById(R.id.logo);
+                iv.setImageBitmap(response);
+            }
+        };
+        ImageRequest imageRequest = new ImageRequest("https://ictlab.usth.edu.vn/wp-content/uploads/logos/usth.png",
+                listener, 0, 0, ImageView.ScaleType.CENTER,
+                Bitmap.Config.ARGB_8888, null);
+        return imageRequest;
     }
     private class GetRequestImage extends AsyncTask<String, Void, Bitmap> {
         private ProgressDialog progressDialog;
